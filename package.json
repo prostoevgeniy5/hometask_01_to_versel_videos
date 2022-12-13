@@ -6,6 +6,7 @@
   "scripts": {
     "watch": "tsc -w",
     "dev": "nodemon --inspect dist/index.js",
+    "nodemonstart": "nodemon --inspect src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
