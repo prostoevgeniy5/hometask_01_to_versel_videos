@@ -7,24 +7,6 @@ const port = process.env.PORT || 3502
 
 type AvailableResolutionsType = string[]
 
-// interface ErrorType {
-//   errorsMessages:  Array<{
-//       message: string
-//       field: string
-//     }>;
-// }
-
-// interface VideoType  {
-//   id: number
-//   title: string
-//   author: string
-//   availableResolutions: AvailableResolutionsType
-//   canBeDownloaded: boolean
-//   minAgeRestriction: number
-//   createdAt: string
-//   publicationDate: string
-// }
-
 export const HTTP_STATUSES = {
   OK_200: 200,
   CREATED_201: 201,
