@@ -40,7 +40,7 @@ app.get('/videos/:id', (req: Request, res: Response) => {
 })
 
 app.post('/videos/', (req: Request, res: Response) => {
-  console.log('Post')
+
   if (!(req.body.title && req.body.author && Array.isArray(req.body.availableResolutions))) {
     res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
       "errorsMessages": [
@@ -71,13 +71,13 @@ app.post('/videos/', (req: Request, res: Response) => {
     availableResolutions: req.body.availableResolutions
   }
   db.videos.push(createdVideo)
-  console.log('was created ', createdVideo)
+ 
   res.status(HTTP_STATUSES.CREATED_201).json(createdVideo)
 })
 
 app.put('/videos/:id', async (req: Request, res: Response) => {
   const result = await videosRepository.putOrDeleteData(req, res, 'put')
-  console.log("PUT result ", result)
+
   if( ! result ) {
     res.sendStatus(HTTP_STATUSES.NOT_FOUND)
   } else if( result ) {
