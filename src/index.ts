@@ -3,7 +3,7 @@ import { db } from './repositories/db'
 import { videosRepository, Videos, ErrorType } from './repositories/videos-repository'
 
 export const app = express()
-const port = process.env.PORT || 3502
+const port = process.env.PORT || 3500
 
 type AvailableResolutionsType = string[]
 
