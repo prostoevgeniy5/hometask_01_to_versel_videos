@@ -104,7 +104,7 @@ app.delete('/videos/:id', (req: Request, res: Response) => {
   }
 })
 
-app.delete('/testing/all-data', (req, res) => {
+app.delete('/ht_01/api/testing/all-data', (req, res) => {
   db.videos = []
   res.sendStatus(HTTP_STATUSES.NO_CONTENT_204)
 
