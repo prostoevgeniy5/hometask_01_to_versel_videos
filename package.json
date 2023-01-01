@@ -2,13 +2,13 @@
   "name": "express-products-vercel",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/src/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "watch": "tsc -w",
     "dev": "nodemon --inspect dist/src/index.js",
     "nodemonstart": "nodemon --inspect src/index.ts",
-    "build": "tsc",
-    "start": "node dist/src/index.js",
+    "start": "tsc",
+    "build": "node dist/src/index.js",
     "test": "jest"
   },
   "keywords": [],
