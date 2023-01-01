@@ -45,11 +45,9 @@ export const videosRepository = {
     },
     updateVideosById(id: number, obj: object): Videos | undefined {
      let videoItem = db.videos.find( (item: Videos, ind: number) => {
-        return item.id === id })
-    console.log('videoItem ',videoItem, '=====')
+        return item.id === id })    
         if (videoItem) {
-            const resultVideoItem = Object.assign(videoItem, obj)
-            console.log('resultVdeoItem in updateVideosById',resultVideoItem)
+            const resultVideoItem = Object.assign(videoItem, obj)            
             return resultVideoItem
         } else {
             return undefined
@@ -74,8 +72,6 @@ export const videosRepository = {
         const erMess: ErrorType = {errorsMessages: [] }
         switch(methodName as string) {
           case 'put' :
-            console.log('typeof ',typeof +req.params.id === 'number', ' db.videos.find() ' , db.videos.find((el: Videos)   => {
-              return el.id === +req.params.id }))
             if(! (typeof +req.params.id === 'number' && db.videos.find((el: Videos)   => {
                 return el.id === +req.params.id })) ) {
                   erMess.errorsMessages.push(
