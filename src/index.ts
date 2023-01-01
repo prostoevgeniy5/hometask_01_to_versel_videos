@@ -104,18 +104,22 @@ app.delete('/videos/:id', (req: Request, res: Response) => {
   }
 })
 
-app.delete('/ht_01/api/testing/all-data', (req, res) => {
+app.delete('/testing/all-data', (req, res) => {
   db.videos = []
   res.sendStatus(HTTP_STATUSES.NO_CONTENT_204)
 
 })
 
-const startApp = async () => {
-  if (require.main === module) {
-    await app.listen(port, () => {
-      console.log(`Example app listening on port ${port}`)
-    })
-  }
-}
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
 
-startApp()
+// const startApp = async () => {
+//   if (require.main === module) {
+//     await app.listen(port, () => {
+//       console.log(`Example app listening on port ${port}`)
+//     })
+//   }
+// }
+
+// startApp()
