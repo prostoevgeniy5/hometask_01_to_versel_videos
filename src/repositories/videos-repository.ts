@@ -6,7 +6,7 @@ export type Videos = {
   title: string
   author: string
   canBeDownloaded: boolean
-  minAgeRestriction: number
+  minAgeRestriction: number | null
   createdAt: string
   publicationDate: string
   availableResolutions: string[]
@@ -59,7 +59,7 @@ export const videosRepository = {
             title: obj.title,
             author: obj.author,
             canBeDownloaded: false,
-            minAgeRestriction: 10,
+            minAgeRestriction: null,
             createdAt: "2022-12-13T09:52:47.923Z",
             publicationDate: "2022-12-13T09:52:47.923Z",
             availableResolutions: obj.availableResolutions
