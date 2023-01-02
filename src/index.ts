@@ -113,13 +113,3 @@ app.delete('/testing/all-data', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
-// const startApp = async () => {
-//   if (require.main === module) {
-//     await app.listen(port, () => {
-//       console.log(`Example app listening on port ${port}`)
-//     })
-//   }
-// }
-
-// startApp()
