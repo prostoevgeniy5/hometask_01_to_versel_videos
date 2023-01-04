@@ -62,17 +62,17 @@ app.post('/videos/', (req: Request, res: Response) => {
     })
     return;
   }
-  if (!( Array.isArray(req.body.availableResolutions) )) {
-    res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
-      "errorsMessages": [
-        {
-          "message": "Bad body data",
-          "field": "avaliableResolution"
-        }
-      ]
-    })
-    return;
-  }
+  // if (!( Array.isArray(req.body.availableResolutions) )) {
+  //   res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
+  //     "errorsMessages": [
+  //       {
+  //         "message": "Bad body data",
+  //         "field": "avaliableResolution"
+  //       }
+  //     ]
+  //   })
+  //   return;
+  // }
 
   let currentDate = new Date()
   const day = currentDate.getDate() + 1
