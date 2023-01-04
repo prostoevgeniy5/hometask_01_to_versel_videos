@@ -41,7 +41,7 @@ app.get('/videos/:id', (req: Request, res: Response) => {
 
 app.post('/videos/', (req: Request, res: Response) => {
 
-  if (!req.body.title || req.body.title.length <= 40 ) {
+  if (!req.body.title || req.body.title.length > 40 ) {
     res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
       "errorsMessages": [
         {
@@ -51,7 +51,7 @@ app.post('/videos/', (req: Request, res: Response) => {
       ]
     })
     return;
-  } else if (!req.body.author || req.body.author.length <= 20) {
+  } else if (!req.body.author || req.body.author.length > 20) {
     res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
       "errorsMessages": [
         {
