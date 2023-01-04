@@ -41,7 +41,7 @@ app.get('/videos/:id', (req: Request, res: Response) => {
 
 app.post('/videos/', (req: Request, res: Response) => {
 
-  if (!(req.body.title && req.body.author && Array.isArray(req.body.availableResolutions))) {
+  if (!(req.body.title && req.body.author && Array.isArray(req.body.availableResolutions) && req.body.title.length <= 40 && req.body.author.length <= 20)) {
     res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
       "errorsMessages": [
         {
@@ -65,7 +65,7 @@ app.post('/videos/', (req: Request, res: Response) => {
     title: req.body.title,
     author: req.body.author,
     canBeDownloaded: false,
-    minAgeRestriction: null,
+    minAgeRestriction: 1,
     createdAt: currentDate.toISOString(),
     publicationDate: currentDatePlusOne.toISOString(),
     availableResolutions: req.body.availableResolutions
