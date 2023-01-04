@@ -5,7 +5,7 @@ import { videosRepository, Videos, ErrorType, ErrorsType } from './repositories/
 export const app = express()
 const port = process.env.PORT || 3500
 
-// type AvailableResolutionsType = string[]
+// type AvaleableResolutionType = 'P144' | 'P240' | 'P360' | 'P480' | 'P720' | 'P108' | 'P1440' | 'P2160'
 
 // enum AvaleableResolutionType  {
 //   P144 = 'P144',
@@ -17,16 +17,16 @@ const port = process.env.PORT || 3500
 //   P1440 = 'P1440',
 //   P2160 = 'P2160'
 // }
-enum AvaleableResolutionType  {
-  P144,
-  P240, 
-  P360,
-  P480,
-  P720,
-  P108,
-  P1440,
-  P2160
-}
+// enum AvaleableResolutionType  {
+//   P144,
+//   P240, 
+//   P360,
+//   P480,
+//   P720,
+//   P108,
+//   P1440,
+//   P2160
+// }
 
 // type ErrorType = {
   
@@ -84,10 +84,13 @@ app.post('/videos/', (req: Request, res: Response) => {
       "field": "author"
     })
   }
-  let resolution: AvaleableResolutionType[] = req.body.avaliableResolution
-  if(resolution.some((elem, ind: number) => { 
-    return elem.toString() !== AvaleableResolutionType[ind].toString()
-    })) {
+  const avaleableResolutionArray = ['P144', 'P240', 'P360', 'P480', 'P720', 'P108', 'P1440', 'P2160']
+  let resolution: string[] = req.body.avaliableResolution
+  const result = []
+  result.push(resolution.some((elem: string, ind: number) => { 
+    return avaleableResolutionArray.includes(elem)
+    }))
+  if(result.includes(false)) {
     errorsObject.errorsMessages.push({
       "message": "Bad body data",
       "field": "avaliableResolution"
