@@ -58,7 +58,7 @@ app.post('/videos/', (req: Request, res: Response) => {
   const dateInMs = currentDate.setDate(day)
   const date = new Date(dateInMs)
 
-  let currentDatePlusOne = new Date(currentDate.setDate(currentDate.getDate() + 1))
+  let currentDatePlusOne = new Date(currentDate.setDate(currentDate.getDate() + 2))
 
   const createdVideo: Videos = {
     id: +(new Date()),
