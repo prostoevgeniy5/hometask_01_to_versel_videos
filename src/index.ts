@@ -86,7 +86,7 @@ app.post('/videos/', (req: Request, res: Response) => {
   }
   let resolution: AvaleableResolutionType[] = req.body.avaliableResolution
   if(resolution.some((elem, ind: number) => { 
-    return elem.toString() !== AvaleableResolutionType[ind]
+    return elem.toString() !== AvaleableResolutionType[ind].toString()
     })) {
     errorsObject.errorsMessages.push({
       "message": "Bad body data",
