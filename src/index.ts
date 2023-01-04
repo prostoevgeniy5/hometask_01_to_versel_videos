@@ -58,7 +58,7 @@ app.post('/videos/', (req: Request, res: Response) => {
   const dateInMs = currentDate.setDate(day)
   const date = new Date(dateInMs)
 
-  let currentDatePlusOne = new Date(currentDate.setDate(currentDate.getDate() + 1))
+  let currentDatePlus = new Date(currentDate.setDate(currentDate.getDate()))
 
   const createdVideo: Videos = {
     id: +(new Date()),
@@ -67,7 +67,7 @@ app.post('/videos/', (req: Request, res: Response) => {
     canBeDownloaded: false,
     minAgeRestriction: 1,
     createdAt: currentDate.toISOString(),
-    publicationDate: currentDatePlusOne.toISOString(),
+    publicationDate: currentDatePlus.toISOString(),
     availableResolutions: req.body.availableResolutions
   }
   db.videos.push(createdVideo)
