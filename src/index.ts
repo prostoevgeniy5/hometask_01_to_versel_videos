@@ -7,6 +7,16 @@ const port = process.env.PORT || 3500
 
 type AvailableResolutionsType = string[]
 
+type ErrorType = {
+  
+    "message": string
+    "field": string
+}
+
+type ErrorsType = {
+  "errorsMessages": ErrorType[]
+}
+
 export const HTTP_STATUSES = {
   OK_200: 200,
   CREATED_201: 201,
@@ -40,26 +50,20 @@ app.get('/videos/:id', (req: Request, res: Response) => {
 })
 
 app.post('/videos/', (req: Request, res: Response) => {
-
+  const errorsObject: ErrorsType = {"errorsMessages":[]}
   if (!req.body.title || req.body.title.length > 40 ) {
-    res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
-      "errorsMessages": [
-        {
-          "message": "Bad body data",
-          "field": "title"
-        }
-      ]
+    errorsObject.errorsMessages.push({
+      "message": "Bad body data",
+      "field": "title"
     })
+    res.status(HTTP_STATUSES.BAD_REQUEST_400).send(errorsObject)
     return;
   } else if (!req.body.author || req.body.author.length > 20) {
-    res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
-      "errorsMessages": [
-        {
-          "message": "Bad body data",
-          "field": "author"
-        }
-      ]
+    errorsObject.errorsMessages.push({
+      "message": "Bad body data",
+      "field": "author"
     })
+    res.status(HTTP_STATUSES.BAD_REQUEST_400).send(errorsObject)
     return;
   }
   // if (!( Array.isArray(req.body.availableResolutions) )) {
