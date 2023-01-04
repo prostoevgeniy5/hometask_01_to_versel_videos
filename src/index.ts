@@ -1,21 +1,21 @@
 import express, { Request, Response } from 'express'
 import { db } from './repositories/db'
-import { videosRepository, Videos, ErrorType } from './repositories/videos-repository'
+import { videosRepository, Videos, ErrorType, ErrorsType } from './repositories/videos-repository'
 
 export const app = express()
 const port = process.env.PORT || 3500
 
 type AvailableResolutionsType = string[]
 
-type ErrorType = {
+// type ErrorType = {
   
-    "message": string
-    "field": string
-}
+//     "message": string
+//     "field": string
+// }
 
-type ErrorsType = {
-  "errorsMessages": ErrorType[]
-}
+// type ErrorsType = {
+//   "errorsMessages": ErrorType[]
+// }
 
 export const HTTP_STATUSES = {
   OK_200: 200,

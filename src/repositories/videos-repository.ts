@@ -12,12 +12,22 @@ export type Videos = {
   availableResolutions: string[]
 }
 
-export interface ErrorType {
-    errorsMessages:  Array<{
-        message: string
-        field: string
-      }>;
-  }
+export type ErrorType = {
+  
+  "message": string
+  "field": string
+}
+
+export type ErrorsType = {
+  "errorsMessages": ErrorType[]
+}
+
+// export interface ErrorType {
+//     errorsMessages:  Array<{
+//         message: string
+//         field: string
+//       }>;
+//   }
 
 export const videosRepository = {
     getVideos():Videos[] {
@@ -68,8 +78,8 @@ export const videosRepository = {
           db.videos.push(newVideo)
           return newVideo
     },
-    putOrDeleteData (req: Request, res: Response, methodName: string): Videos | ErrorType | undefined {
-        const erMess: ErrorType = {errorsMessages: [] }
+    putOrDeleteData (req: Request, res: Response, methodName: string): Videos | ErrorsType | undefined {
+        const erMess: ErrorsType = {"errorsMessages": [] }
         switch(methodName as string) {
           case 'put' :
             if(! (typeof +req.params.id === 'number' && db.videos.find((el: Videos)   => {
