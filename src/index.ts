@@ -56,16 +56,23 @@ app.post('/videos/', (req: Request, res: Response) => {
       "message": "Bad body data",
       "field": "title"
     })
-    res.status(HTTP_STATUSES.BAD_REQUEST_400).send(errorsObject)
-    return;
-  } else if (!req.body.author || req.body.author.length > 20) {
-    errorsObject.errorsMessages.push({
-      "message": "Bad body data",
-      "field": "author"
-    })
+    if (!req.body.author || req.body.author.length > 20) {
+      errorsObject.errorsMessages.push({
+        "message": "Bad body data",
+        "field": "author"
+      })
+    }
     res.status(HTTP_STATUSES.BAD_REQUEST_400).send(errorsObject)
     return;
   }
+  //  else if (!req.body.author || req.body.author.length > 20) {
+  //   errorsObject.errorsMessages.push({
+  //     "message": "Bad body data",
+  //     "field": "author"
+  //   })
+  //   res.status(HTTP_STATUSES.BAD_REQUEST_400).send(errorsObject)
+  //   return;
+  // }
   // if (!( Array.isArray(req.body.availableResolutions) )) {
   //   res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
   //     "errorsMessages": [
