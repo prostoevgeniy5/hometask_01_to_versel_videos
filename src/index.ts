@@ -5,7 +5,28 @@ import { videosRepository, Videos, ErrorType, ErrorsType } from './repositories/
 export const app = express()
 const port = process.env.PORT || 3500
 
-type AvailableResolutionsType = string[]
+// type AvailableResolutionsType = string[]
+
+// enum AvaleableResolutionType  {
+//   P144 = 'P144',
+//   P240 = 'P240', 
+//   P360 = 'P360',
+//   P480 = 'P480',
+//   P720 = 'P720',
+//   P1080 = 'P1080',
+//   P1440 = 'P1440',
+//   P2160 = 'P2160'
+// }
+enum AvaleableResolutionType  {
+  P144,
+  P240, 
+  P360,
+  P480,
+  P720,
+  P108,
+  P1440,
+  P2160'
+}
 
 // type ErrorType = {
   
@@ -61,6 +82,15 @@ app.post('/videos/', (req: Request, res: Response) => {
     errorsObject.errorsMessages.push({
       "message": "Bad body data",
       "field": "author"
+    })
+  }
+  let resolution: AvaleableResolutionType[] = req.body.avaliableResolution
+  if(resolution.some((elem, ind: number) => { 
+    return elem.toString() !== AvaleableResolutionType[ind]
+    })) {
+    errorsObject.errorsMessages.push({
+      "message": "Bad body data",
+      "field": "avaliableResolution"
     })
   }
   if (errorsObject.errorsMessages.length > 0) {
