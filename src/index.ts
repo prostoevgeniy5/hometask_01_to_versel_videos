@@ -93,7 +93,7 @@ app.post('/videos/', (req: Request, res: Response) => {
   if(result.includes(false)) {
     errorsObject.errorsMessages.push({
       "message": "Bad body data",
-      "field": "avaliableResolution"
+      "field": "availableResolutions"
     })
   }
   if (errorsObject.errorsMessages.length > 0) {
@@ -101,26 +101,6 @@ app.post('/videos/', (req: Request, res: Response) => {
     return;
   }  
   
-  //  else if (!req.body.author || req.body.author.length > 20) {
-  //   errorsObject.errorsMessages.push({
-  //     "message": "Bad body data",
-  //     "field": "author"
-  //   })
-  //   res.status(HTTP_STATUSES.BAD_REQUEST_400).send(errorsObject)
-  //   return;
-  // }
-  // if (!( Array.isArray(req.body.availableResolutions) )) {
-  //   res.status(HTTP_STATUSES.BAD_REQUEST_400).send({
-  //     "errorsMessages": [
-  //       {
-  //         "message": "Bad body data",
-  //         "field": "avaliableResolution"
-  //       }
-  //     ]
-  //   })
-  //   return;
-  // }
-
   let currentDate = new Date()
   const day = currentDate.getDate() + 1
   const dateInMs = currentDate.setDate(day)
@@ -159,8 +139,8 @@ app.put('/videos/:id', async (req: Request, res: Response) => {
   }
 })
 
-app.delete('/videos/:id', (req: Request, res: Response) => {
-  const result = videosRepository.putOrDeleteData(req, res, 'delete')
+app.delete('/videos/:id', async (req: Request, res: Response) => {
+  const result = await videosRepository.putOrDeleteData(req, res, 'delete')
   if(!result) {
     res.sendStatus(HTTP_STATUSES.NOT_FOUND)
   } else if( result ) {
