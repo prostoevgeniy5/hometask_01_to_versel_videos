@@ -25,7 +25,7 @@ enum AvaleableResolutionType  {
   P720,
   P108,
   P1440,
-  P2160'
+  P2160
 }
 
 // type ErrorType = {
