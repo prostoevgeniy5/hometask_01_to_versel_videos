@@ -85,11 +85,11 @@ app.post('/videos/', (req: Request, res: Response) => {
     })
   }
   const avaleableResolutionArray = ['P144', 'P240', 'P360', 'P480', 'P720', 'P108', 'P1440', 'P2160']
-  let resolution: string[] = req.body.avaliableResolution
-  const result = []
-  result.push(resolution.some((elem: string, ind: number) => { 
-    return avaleableResolutionArray.includes(elem)
-    }))
+  let resolution: string[] = req.body.availableResolutions
+  const result: boolean[] = []
+  resolution.forEach((elem: string, ind: number) => { 
+    result.push(avaleableResolutionArray.includes(elem))
+    })
   if(result.includes(false)) {
     errorsObject.errorsMessages.push({
       "message": "Bad body data",
