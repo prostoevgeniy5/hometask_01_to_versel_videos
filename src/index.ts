@@ -113,7 +113,7 @@ app.post('/videos/', (req: Request, res: Response) => {
     title: req.body.title,
     author: req.body.author,
     canBeDownloaded: false,
-    minAgeRestriction: null,
+    minAgeRestriction: req.body.minAgeRestriction ? req.body.minAgeRestriction : null,
     createdAt: currentDate.toISOString(),
     publicationDate: date.toISOString(),
     availableResolutions: req.body.availableResolutions
