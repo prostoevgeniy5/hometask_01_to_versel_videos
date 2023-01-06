@@ -107,7 +107,7 @@ export const videosRepository = {
                   "field": "author"
                 }
               )
-            } if (typeof req.body.publicationDate !== "string") {
+            } if (req.body.publicationDate && (typeof req.body.publicationDate !== "string")) {
               erMess.errorsMessages.push(
                 {
                   "message": "Bad body data",
@@ -115,7 +115,7 @@ export const videosRepository = {
                 }
               )
               
-            } if (typeof req.body.canBeDownloaded !== "boolean") {
+            } if (req.body.canBeDownloaded && (typeof req.body.canBeDownloaded !== "boolean")) {
                   erMess.errorsMessages.push(
                     {
                       "message": "Bad body data",
@@ -123,7 +123,7 @@ export const videosRepository = {
                     }
                   )
                   
-            } if (typeof req.body.minAgeRestriction !== "number" || req.body.minAgeRestriction < 1 || req.body.minAgeRestriction > 18) {
+            } if (req.body.minAgeRestriction && (typeof req.body.minAgeRestriction !== "number" || req.body.minAgeRestriction < 1 || req.body.minAgeRestriction > 18)) {
               erMess.errorsMessages.push(
                 {
                   "message": "Bad body data",
