@@ -91,23 +91,25 @@ export const videosRepository = {
                       "field": "id"
                     }
                   )
-                  return erMess
-            } else if (!req.body.title || typeof req.body.title === null) {
+                  
+            } if (!req.body.title || typeof req.body.title === null) {
                   erMess.errorsMessages.push(
                     {
                       "message": "Bad body data",
                       "field": "title"
                     }
                   )
-                  return erMess
-            } else if(typeof req.body.canBeDownloaded !== "boolean") {
+                  
+            } if (typeof req.body.canBeDownloaded !== "boolean") {
                   erMess.errorsMessages.push(
                     {
                       "message": "Bad body data",
                       "field": "canBeDownloaded"
                     }
                   )
-                  return erMess
+                  
+            } else if(erMess.errorsMessages.length > 0) {
+              return erMess
             } else {
               const resultVideoItem: Videos | undefined = videosRepository.updateVideosById(+req.params.id, req.body)
               if(resultVideoItem) {
