@@ -128,6 +128,8 @@ app.put('/videos/:id', async (req: Request, res: Response) => {
 
   if( ! result ) {
     res.sendStatus(HTTP_STATUSES.NOT_FOUND)
+  } else if(!result.id) {
+    res.status(HTTP_STATUSES.NOT_FOUND).send(result)
   } else if( result ) {
     db.videos.forEach((item, ind) => {
       if(item.id === +req.params.id) {

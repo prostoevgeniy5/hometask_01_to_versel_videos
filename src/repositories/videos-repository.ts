@@ -19,7 +19,8 @@ export type ErrorType = {
 }
 
 export type ErrorsType = {
-  "errorsMessages": ErrorType[]
+  // "errorsMessages": ErrorType[]
+  [key: string]:ErrorType[]
 }
 
 // export interface ErrorType {
@@ -88,6 +89,15 @@ export const videosRepository = {
                     {
                       "message": "Bad body data",
                       "field": "id"
+                    }
+                  )
+                  // res.status(400).send(erMess)
+                  return erMess
+            } else if (!req.body.title || typeof req.body.title === null) {
+                  erMess.errorsMessages.push(
+                    {
+                      "message": "Bad body data",
+                      "field": "title"
                     }
                   )
                   // res.status(400).send(erMess)
