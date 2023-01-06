@@ -108,7 +108,7 @@ export const videosRepository = {
                     }
                   )
                   
-            } else if(erMess.errorsMessages.length > 0) {
+            } if(erMess.errorsMessages.length > 0) {
               return erMess
             } else {
               const resultVideoItem: Videos | undefined = videosRepository.updateVideosById(+req.params.id, req.body)
