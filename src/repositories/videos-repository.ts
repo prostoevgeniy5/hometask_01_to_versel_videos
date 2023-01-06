@@ -91,7 +91,6 @@ export const videosRepository = {
                       "field": "id"
                     }
                   )
-                  // res.status(400).send(erMess)
                   return erMess
             } else if (!req.body.title || typeof req.body.title === null) {
                   erMess.errorsMessages.push(
@@ -100,7 +99,14 @@ export const videosRepository = {
                       "field": "title"
                     }
                   )
-                  // res.status(400).send(erMess)
+                  return erMess
+            } else if(typeof req.body.canBeDownloaded !== "boolean") {
+                  erMess.errorsMessages.push(
+                    {
+                      "message": "Bad body data",
+                      "field": "canBeDownloaded"
+                    }
+                  )
                   return erMess
             } else {
               const resultVideoItem: Videos | undefined = videosRepository.updateVideosById(+req.params.id, req.body)
