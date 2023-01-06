@@ -100,6 +100,21 @@ export const videosRepository = {
                     }
                   )
                   
+            } if (!req.body.author || typeof req.body.author === null || req.body.author.length > 20) {
+              erMess.errorsMessages.push(
+                {
+                  "message": "Bad body data",
+                  "field": "author"
+                }
+              )
+            } if (typeof req.body.publicationDate !== "string") {
+              erMess.errorsMessages.push(
+                {
+                  "message": "Bad body data",
+                  "field": "publicationDate"
+                }
+              )
+              
             } if (typeof req.body.canBeDownloaded !== "boolean") {
                   erMess.errorsMessages.push(
                     {
