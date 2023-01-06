@@ -92,7 +92,7 @@ export const videosRepository = {
                     }
                   )
                   
-            } if (!req.body.title || typeof req.body.title === null) {
+            } if (!req.body.title || typeof req.body.title === null || req.body.title.length > 40) {
                   erMess.errorsMessages.push(
                     {
                       "message": "Bad body data",
@@ -108,6 +108,13 @@ export const videosRepository = {
                     }
                   )
                   
+            } if (typeof req.body.minAgeRestriction !== "number" || req.body.minAgeRestriction < 1 || req.body.minAgeRestriction > 18) {
+              erMess.errorsMessages.push(
+                {
+                  "message": "Bad body data",
+                  "field": "minAgeRestriction"
+                }
+              )
             } if(erMess.errorsMessages.length > 0) {
               return erMess
             } else {
