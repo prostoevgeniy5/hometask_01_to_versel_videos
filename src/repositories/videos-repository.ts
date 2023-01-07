@@ -141,15 +141,16 @@ export const videosRepository = {
             }
           break;
           case 'delete' :
-          if(! (typeof +req.params.id === 'number' && db.videos.find((el: Videos)   => {
-            return el.id === +req.params.id })) ) {
+          const findResult = db.videos.find((el: Videos)   => {
+            return el.id === +req.params.id })
+          if(! (typeof +req.params.id === 'number' && findResult) ) {
               erMess.errorsMessages.push(
                 {
                   "message": "Bad id data",
                   "field": "id"
                 }
               )
-              // res.status(400).send(erMess)
+
               return erMess
           } else {
             let resultVideoItem: Videos | undefined = db.videos.find((el: Videos)   => {
