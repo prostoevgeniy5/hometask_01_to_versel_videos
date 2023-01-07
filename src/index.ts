@@ -149,7 +149,7 @@ app.put('/videos/:id', async (req: Request, res: Response) => {
 
 app.delete('/videos/:id', async (req: Request, res: Response) => {
   const result = await videosRepository.putOrDeleteData(req, res, 'delete')
-  if(!result || Object.entries(result).length !== 0) {
+  if(typeof result ===undefined) {
     res.sendStatus(HTTP_STATUSES.NOT_FOUND)
   } else if( result ) {
     db.videos = db.videos.filter((item, ind) => {
