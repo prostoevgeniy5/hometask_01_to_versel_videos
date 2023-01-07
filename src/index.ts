@@ -124,12 +124,15 @@ app.post('/videos/', (req: Request, res: Response) => {
 })
 
 app.put('/videos/:id', async (req: Request, res: Response) => {
-  const result = await videosRepository.putOrDeleteData(req, res, 'put')
-
-  if( ! result ) {
-    res.sendStatus(HTTP_STATUSES.BAD_REQUEST_400)
-  } else if(!result.id) {
-    res.status(HTTP_STATUSES.NOT_FOUND).send(result)
+  let result = await videosRepository.putOrDeleteData(req, res, 'put')
+  if (typeof result === undefined) {
+    res.sendStatus(HTTP_STATUSES.NOT_FOUND)
+    return
+  }
+  else if(result && typeof result.id === 'number') {
+    res.send(HTTP_STATUSES.NOT_FOUND).send(result)
+  } else if(result && Object.entries(result)[0][0] === 'errorsMessages') {
+    res.status(HTTP_STATUSES.BAD_REQUEST_400).send(result)
   } else if( result ) {
     db.videos.forEach((item, ind) => {
       if(item.id === +req.params.id) {
