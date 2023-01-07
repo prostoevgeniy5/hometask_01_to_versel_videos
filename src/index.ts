@@ -129,10 +129,12 @@ app.put('/videos/:id', async (req: Request, res: Response) => {
     res.sendStatus(HTTP_STATUSES.NOT_FOUND)
     return
   }
-  else if(result && typeof result.id === 'number') {
-    res.send(HTTP_STATUSES.NOT_FOUND).send(result)
-  } else if(result && Object.entries(result)[0][0] === 'errorsMessages') {
+  // else if(result && typeof result.id === 'number') {
+  //   res.send(HTTP_STATUSES.NOT_FOUND).send(result)
+  // } 
+  else if(result && Object.entries(result)[0][0] === 'errorsMessages') {
     res.status(HTTP_STATUSES.BAD_REQUEST_400).send(result)
+    return
   } else if( result ) {
     db.videos.forEach((item, ind) => {
       if(item.id === +req.params.id) {
@@ -141,6 +143,7 @@ app.put('/videos/:id', async (req: Request, res: Response) => {
       }
     })
     res.sendStatus(HTTP_STATUSES.NO_CONTENT_204)
+    return
   }
 })
 
