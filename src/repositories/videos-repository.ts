@@ -85,13 +85,7 @@ export const videosRepository = {
           case 'put' :
             if(! (typeof +req.params.id === 'number' && db.videos.find((el: Videos)   => {
                 return el.id === +req.params.id })) ) {
-                  erMess.errorsMessages.push(
-                    {
-                      "message": "Bad body data",
-                      "field": "id"
-                    }
-                  )
-                  
+                  return
             } if (!req.body.title || typeof req.body.title === null || req.body.title.length > 40) {
                   erMess.errorsMessages.push(
                     {

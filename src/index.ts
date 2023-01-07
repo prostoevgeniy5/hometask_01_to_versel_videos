@@ -125,7 +125,7 @@ app.post('/videos/', (req: Request, res: Response) => {
 
 app.put('/videos/:id', async (req: Request, res: Response) => {
   let result = await videosRepository.putOrDeleteData(req, res, 'put')
-  if (typeof result === undefined) {
+  if (typeof result === 'undefined') {
     res.sendStatus(HTTP_STATUSES.NOT_FOUND)
     return
   }
