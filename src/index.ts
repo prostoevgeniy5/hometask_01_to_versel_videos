@@ -149,7 +149,8 @@ app.put('/videos/:id', async (req: Request, res: Response) => {
 
 app.delete('/videos/:id', async (req: Request, res: Response) => {
   const result = await videosRepository.putOrDeleteData(req, res, 'delete')
-  if(typeof result === undefined) {
+  
+  if(typeof result === 'undefined') {
     res.sendStatus(HTTP_STATUSES.NOT_FOUND)
     return
   } else if( result ) {
@@ -157,7 +158,7 @@ app.delete('/videos/:id', async (req: Request, res: Response) => {
       return item.id !== +req.params.id
     })
     
-    res.sendStatus(HTTP_STATUSES.NO_CONTENT_204)
+      res.sendStatus(HTTP_STATUSES.NO_CONTENT_204)
   }
 })
 

@@ -143,8 +143,9 @@ export const videosRepository = {
           case 'delete' :
           const findResult = db.videos.find((el: Videos)   => {
             return el.id === +req.params.id })
-          if(! (typeof findResult === undefined) ) {
-              return undefined
+
+          if(typeof findResult === 'undefined') {
+              return
           } else {
             let resultVideoItem: Videos | undefined = db.videos.find((el: Videos)   => {
               return el.id === +req.params.id })
