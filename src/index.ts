@@ -151,6 +151,7 @@ app.delete('/videos/:id', async (req: Request, res: Response) => {
   const result = await videosRepository.putOrDeleteData(req, res, 'delete')
   if(typeof result ===undefined) {
     res.sendStatus(HTTP_STATUSES.NOT_FOUND)
+    return
   } else if( result ) {
     db.videos = db.videos.filter((item, ind) => {
       return item.id !== +req.params.id
